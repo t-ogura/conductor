@@ -1,5 +1,7 @@
 #include "monokey.dtsi"
 #include <input/processors.dtsi>
+#include <input/processors/runtime-input-processor.dtsi>
+#include <behaviors/battery_history_request.dtsi>
 
 &default_transform {
     col-offset = <6>;
@@ -19,23 +21,16 @@
 
 
 
-// 非マウスキーでAML解除
-&zip_temp_layer {
-    excluded-positions = <
-        17 // K
-        18 // L
-    >;
-    require-prior-idle-ms = <200>;
-    // トラボ誤爆防止
-};
-
-
 / {
     trackball_listener {
         compatible = "zmk,input-listener";
         device = <&trackball>;
-        input-processors = <&zip_temp_layer 4 100000>; // AML
+        input-processors = <&mouse_runtime_input_processor>;
 
+        scroller {
+            layers = <5>;
+            input-processors = <&zip_xy_to_scroll_mapper &scroll_runtime_input_processor>;
+        };
     };
 };
 
@@ -72,7 +67,6 @@
         reg = <0>;
         spi-max-frequency = <2000000>;
         irq-gpios = <&gpio0 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-        scroll-layers = <5>;
     };
 };
 

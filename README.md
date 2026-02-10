@@ -2,6 +2,19 @@
 
 `Conductor` は、[ZMK Firmware](https://zmk.dev/) をベースにしたカスタムキーボードファームウェア設定です。
 
+## DYA Studio 対応
+
+本ファームウェアは [DYA Studio](https://studio.dya.cormoran.works/) に対応しています。DYA Studio を使用すると、ブラウザからキーマップ編集、トラックボール設定、バッテリー履歴の確認、BLE 接続管理などをランタイムで行えます。
+
+### 接続方法
+
+- **USB**: Central（右側）を USB で PC に接続し、DYA Studio から「Connect」で接続
+- **BLE（Windows/iOS）**: 接続前にキーボードの **Studio Unlock キー**を押してください。キー位置は Bluetooth レイヤー（layer 6）にあります。詳細は [キーマップ](config/monokey.keymap) を参照してください。
+
+### 推奨ブラウザ
+
+Google Chrome を推奨します。
+
 ## 主な構成
 
 - **ボード**: `seeeduino_xiao_ble`
